@@ -10,7 +10,7 @@ function App(): JSX.Element {
   const [task, setTask] = useState<string>("");
   const [editingTask, setEditingTask] = useState<ITask | null>(null);
 
-  const addTask = () => {
+  const addTask = (): void => {
     if (task) {
       let id = Math.random() * 100000000
       let newTask = ({ id: +id, title: task, status: false});
@@ -22,7 +22,7 @@ function App(): JSX.Element {
 
   const editTask = (): void => {
     if (editingTask) {
-      const filterRecords: ITask[] = [...toDoList].filter(task => task.id !== editingTask.id);
+      const filterRecords: ITask[] = [...toDoList].filter((task: ITask) => task.id !== editingTask.id);
       const updateObject: ITask[] = [...filterRecords, editingTask];
       setToDoList(updateObject);
       setEditingTask(null);
@@ -40,21 +40,20 @@ function App(): JSX.Element {
     };
   };
 
-  const cancelEditing = () => {
+  const cancelEditing = (): void => {
     setEditingTask(null);
   };
 
   const deleteTask = (id: number): void => {
-    const tasks: ITask[] = toDoList.filter(task => task.id !== id);
+    const tasks: ITask[] = toDoList.filter((task: ITask) => task.id !== id);
 
-    
     setToDoList(tasks);
     setEditingTask(null);
   };
 
   const markDone = (id: number): void => {
     let doneTasks: ITask[] = [];
-    let task: ITask[] = toDoList.map( task => {
+    let task: ITask[] = toDoList.map((task: ITask) => {
 
       if (task.id === id) {
         return({...task, status: !task.status});
@@ -66,7 +65,7 @@ function App(): JSX.Element {
     setToDoList(task);
     setEditingTask(null);
 
-    task.map(item => {
+    task.map((item: ITask) => {
       if(item.status === true) {
         doneTasks.push(item);
       };
