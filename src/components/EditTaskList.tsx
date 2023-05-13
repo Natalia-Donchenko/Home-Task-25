@@ -8,7 +8,7 @@ const EditTaskList: React.FC<IEditTaskListProps> = ({ editingTask, changeTask, e
         <input
           className="task-input"
           value={editingTask && editingTask.title}
-          onChange={ (e: ChangeEvent<HTMLInputElement>) => changeTask(e)}
+          onChange={(e: ChangeEvent<HTMLInputElement>): void => changeTask(e)}
         />
       </div>
 

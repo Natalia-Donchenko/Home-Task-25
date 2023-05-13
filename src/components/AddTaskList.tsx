@@ -1,4 +1,5 @@
 import React from "react"
+import { ChangeEvent } from "react"
 
 type AddTaskListProps = {
   task: string 
@@ -13,7 +14,7 @@ const AddTaskList: React.FC<AddTaskListProps> = ({ task, setTask, addTask }) => 
         className="task-input"
         placeholder="What do you want to do?"
         value={task}
-        onChange={(e) => setTask(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>): void => setTask(e.target.value)}
       />
 
       <button

@@ -1,11 +1,11 @@
-import { IToDoListProps } from "../utils/types"
+import { ITask, IToDoListProps } from "../utils/types"
 
 const ToDoList: React.FC<IToDoListProps> = ({ toDoList, markDone, setEditingTask, deleteTask }) => {
   return (
     <>
       {toDoList && toDoList
-        .sort((a, b) => a.id > b.id ? 1: -1)
-        .map( (task, index) => {
+        .sort((a: ITask, b: ITask) => a.id > b.id ? 1: -1)
+        .map((task: ITask, index: number) => {
           return (
             <div 
               className="list-wrapper"
@@ -16,7 +16,7 @@ const ToDoList: React.FC<IToDoListProps> = ({ toDoList, markDone, setEditingTask
                   className="checkbox"
                   title="Completed / Not Completed"
                   type="checkbox"
-                  onClick={ (e) => markDone(task.id)}
+                  onClick={() => markDone(task.id)}
                 />
 
                 <div className={task.status ? "done" : "active"}>
@@ -31,7 +31,7 @@ const ToDoList: React.FC<IToDoListProps> = ({ toDoList, markDone, setEditingTask
                   <button 
                     className="optional-btn"
                     title="Do you want to edit?" 
-                    onClick={ () => setEditingTask({
+                    onClick={() => setEditingTask({
                       id: task.id, 
                       title: task.title,
                       status: task.status ? true : false 
